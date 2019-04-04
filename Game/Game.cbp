@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Game" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug - Win32">
+				<Option output="../bin/Debug/client/Game" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin/Debug/client" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-Wl,--enable-stdcall-fixup" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c scripts\debug-post.bat" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release - Win32">
+				<Option output="../bin/Release/client/Game" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cmd /c scripts\release-post.bat" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-fexceptions" />
+			<Add option="-fpermissive" />
+			<Add option="-Wno-deprecated-declarations" />
+			<Add option="-Wno-unknown-pragmas" />
+			<Add option="-Wno-misleading-indentation" />
+			<Add option="-Wno-unused-variable" />
+			<Add option="-Wno-write-strings" />
+			<Add directory="../config" />
+			<Add directory="include" />
+			<Add directory="../deps/win32/Ogre/include" />
+			<Add directory="../deps/win32/Ogre/include/Components/Paging" />
+			<Add directory="../deps/win32/Ogre/include/Components/Property" />
+			<Add directory="../deps/win32/Ogre/include/Components/RTShaderSystem" />
+			<Add directory="../deps/win32/Ogre/include/Components/Terrain" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/BSPSceneManager" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/CgProgramManager" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/EXRCodec" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/OctreeSceneManager" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/OctreeZone" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/ParticleFX" />
+			<Add directory="../deps/win32/Ogre/include/PlugIns/PCZSceneManager" />
+			<Add directory="../deps/win32/Ogre/include/Threading" />
+			<Add directory="../deps/win32/Ogre/include/OIS" />
+			<Add directory="../deps/win32/OgrePagedGeometry/include" />
+			<Add directory="../deps/win32/RakNet/include" />
+			<Add directory="../deps/win32/fmod/include" />
+			<Add directory="../deps/win32/zzip/include" />
+		</Compiler>
+		<Linker>
+			<Add library="DbgHelp" />
+			<Add library="OgreMain" />
+			<Add library="OgrePaging" />
+			<Add library="OgreRTShaderSystem" />
+			<Add library="OgreTerrain" />
+			<Add library="Plugin_BSPSceneManager" />
+			<Add library="Plugin_CgProgramManager" />
+			<Add library="Plugin_OctreeSceneManager" />
+			<Add library="Plugin_OctreeZone" />
+			<Add library="Plugin_ParticleFX" />
+			<Add library="Plugin_PCZSceneManager" />
+			<Add library="PagedGeometry" />
+			<Add library="OIS" />
+			<Add library="ws2_32" />
+			<Add library="RakNet" />
+			<Add library="fmod" />
+			<Add library="zziplib" />
+			<Add library="zlib" />
+			<Add directory="../deps/win32/Ogre/bin" />
+			<Add directory="../deps/win32/OgrePagedGeometry/lib" />
+			<Add directory="../deps/win32/RakNet/lib" />
+			<Add directory="../deps/win32/fmod/lib" />
+			<Add directory="../deps/win32/zzip/lib" />
+		</Linker>
+		<Unit filename="../config/GameConfig.h" />
+		<Unit filename="../static/client/update.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="include/DebugTrace.h" />
+		<Unit filename="include/HeightFunction.h" />
+		<Unit filename="include/MagixAlertBox.h" />
+		<Unit filename="include/MagixAnimated.h" />
+		<Unit filename="include/MagixApplication.h" />
+		<Unit filename="include/MagixCamera.h" />
+		<Unit filename="include/MagixCampaignManager.h" />
+		<Unit filename="include/MagixCharScreenManager.h" />
+		<Unit filename="include/MagixChatManager.h" />
+		<Unit filename="include/MagixCollisionManager.h" />
+		<Unit filename="include/MagixConst.h" />
+		<Unit filename="include/MagixCritter.h" />
+		<Unit filename="include/MagixCritterManager.h" />
+		<Unit filename="include/MagixEffectsManager.h" />
+		<Unit filename="include/MagixEncryption.h" />
+		<Unit filename="include/MagixExternalDefinitions.h" />
+		<Unit filename="include/MagixFrameListener.h" />
+		<Unit filename="include/MagixGUI.h" />
+		<Unit filename="include/MagixGameStateManager.h" />
+		<Unit filename="include/MagixHandler.h" />
+		<Unit filename="include/MagixIndexedUnit.h" />
+		<Unit filename="include/MagixInputManager.h" />
+		<Unit filename="include/MagixItem.h" />
+		<Unit filename="include/MagixItemManager.h" />
+		<Unit filename="include/MagixLiving.h" />
+		<Unit filename="include/MagixLoadingBar.h" />
+		<Unit filename="include/MagixMiniMap.h" />
+		<Unit filename="include/MagixNetworkDefines.h" />
+		<Unit filename="include/MagixNetworkManager.h" />
+		<Unit filename="include/MagixObject.h" />
+		<Unit filename="include/MagixOwnershipManager.h" />
+		<Unit filename="include/MagixPlayer.h" />
+		<Unit filename="include/MagixSkyManager.h" />
+		<Unit filename="include/MagixSoundManager.h" />
+		<Unit filename="include/MagixUnit.h" />
+		<Unit filename="include/MagixUnitManager.h" />
+		<Unit filename="include/MagixWorld.h" />
+		<Unit filename="include/MovableTextOverlay.h" />
+		<Unit filename="include/OgreMagixApp.h" />
+		<Unit filename="include/OgreMagixFrameListener.h" />
+		<Unit filename="include/SoundManager.h" />
+		<Unit filename="res/Resource.h" />
+		<Unit filename="res/ogremagix.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="scripts/debug-post.bat">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="scripts/release-post.bat">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="src/DebugTrace.cpp" />
+		<Unit filename="src/MagixAlertBox.cpp" />
+		<Unit filename="src/MagixAnimated.cpp" />
+		<Unit filename="src/MagixApplication.cpp" />
+		<Unit filename="src/MagixCamera.cpp" />
+		<Unit filename="src/MagixCampaignManager.cpp" />
+		<Unit filename="src/MagixCharScreenManager.cpp" />
+		<Unit filename="src/MagixChatManager.cpp" />
+		<Unit filename="src/MagixCollisionManager.cpp" />
+		<Unit filename="src/MagixCritter.cpp" />
+		<Unit filename="src/MagixCritterManager.cpp" />
+		<Unit filename="src/MagixEffectsManager.cpp" />
+		<Unit filename="src/MagixEncryption.cpp" />
+		<Unit filename="src/MagixExternalDefinitions.cpp" />
+		<Unit filename="src/MagixFrameListener.cpp" />
+		<Unit filename="src/MagixGUI.cpp" />
+		<Unit filename="src/MagixGameStateManager.cpp" />
+		<Unit filename="src/MagixHandler.cpp" />
+		<Unit filename="src/MagixIndexedUnit.cpp" />
+		<Unit filename="src/MagixInputManager.cpp" />
+		<Unit filename="src/MagixItem.cpp" />
+		<Unit filename="src/MagixItemManager.cpp" />
+		<Unit filename="src/MagixLiving.cpp" />
+		<Unit filename="src/MagixLoadingBar.cpp" />
+		<Unit filename="src/MagixMiniMap.cpp" />
+		<Unit filename="src/MagixNetworkManager.cpp" />
+		<Unit filename="src/MagixObject.cpp" />
+		<Unit filename="src/MagixOwnershipManager.cpp" />
+		<Unit filename="src/MagixPlayer.cpp" />
+		<Unit filename="src/MagixSkyManager.cpp" />
+		<Unit filename="src/MagixSoundManager.cpp" />
+		<Unit filename="src/MagixUnit.cpp" />
+		<Unit filename="src/MagixUnitManager.cpp" />
+		<Unit filename="src/MagixWorld.cpp" />
+		<Unit filename="src/MovableTextOverlay.cpp" />
+		<Unit filename="src/OgreMagixApp.cpp" />
+		<Unit filename="src/OgreMagixFrameListener.cpp" />
+		<Unit filename="src/SoundManager.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
