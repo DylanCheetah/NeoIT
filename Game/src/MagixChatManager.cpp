@@ -4,6 +4,7 @@ MagixChatManager::processInput processes commands typed in the chat.
 MagixChatManager::prefixChatLine adds the player name/title to the messages sent.
 */
 
+#include "GameConfig.h"
 #include "MagixChatManager.h"
 
 
@@ -587,7 +588,7 @@ const String MagixChatManager::processChatString(const String &caption, const St
     if(tCaption.length() > 0)
     {
         //size caption
-        const Font *pFont = dynamic_cast<Ogre::Font*>(Ogre::FontManager::getSingleton().getByName("Tahoma").getPointer());
+        const Font *pFont = dynamic_cast<Ogre::Font*>(Ogre::FontManager::getSingleton().getByName(DEFAULT_FONT).getPointer());
         const Real tHeight = charHeight;
 
         int tSpacePos = -1;

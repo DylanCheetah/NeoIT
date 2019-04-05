@@ -1,3 +1,4 @@
+#include "GameConfig.h"
 #include "MagixUnitManager.h"
 
 
@@ -80,11 +81,11 @@ void MagixUnitManager::initialize(SceneManager *sceneMgr, MagixExternalDefinitio
     mCamera = camera;
     mRayQuery = sceneMgr->createRayQuery(Ray());
     mNameTagAttr = new MovableTextOverlayAttributes("Attrs1", sceneMgr->getCamera(
-        "PlayerCam"), "Tahoma", 16, ColourValue::White, "GUIMat/ButtonUp");
+        "PlayerCam"), DEFAULT_FONT, 16, ColourValue::White, "GUIMat/ButtonUp");
     mChatBubbleAttr = new MovableTextOverlayAttributes("Attrs2", sceneMgr->getCamera(
-        "PlayerCam"), "Tahoma", 16, ColourValue(1, 0.6, 0), "GUIMat/StatsBlockCenter");
+        "PlayerCam"), DEFAULT_FONT, 16, ColourValue(1, 0.6, 0), "GUIMat/StatsBlockCenter");
     mUserTagAttr = new MovableTextOverlayAttributes("Attrs3", sceneMgr->getCamera(
-        "PlayerCam"), "Tahoma", 14, ColourValue(1, 0.6, 0), "GUIMat/ButtonUp");
+        "PlayerCam"), DEFAULT_FONT, 14, ColourValue(1, 0.6, 0), "GUIMat/ButtonUp");
 }
 
 
