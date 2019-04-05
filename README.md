@@ -8,6 +8,10 @@ Setup:
 7. if CodeBlocks can't find the build tools, click the ... button and choose the MinGW-w64 install dir
  (usually "C:\MinGW-w64\mingw32")
 
+Note: You need to unzip the deps.zip file into the main project dir before building. I had to zip it due to it's 
+size.
+
+
 Building:
 1. double-click the IT workspace file
 2. make changes
