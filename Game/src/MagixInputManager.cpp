@@ -1,3 +1,4 @@
+#include "GameConfig.h"
 #include "MagixInputManager.h"
 #include <OgreFontManager.h>
 //#include <OgreFont.h>
@@ -257,7 +258,7 @@ void MagixInputManager::normalizeText(String &caption, OverlayElement *box)
 {
     if(!box)return;
     //size caption
-    const Font *pFont = dynamic_cast<Ogre::Font*>(Ogre::FontManager::getSingleton().getByName("Tahoma").getPointer());
+    const Font *pFont = dynamic_cast<Ogre::Font*>(Ogre::FontManager::getSingleton().getByName(DEFAULT_FONT).getPointer());
     const Real tHeight = StringConverter::parseReal(
         box->getParameter("char_height"));
 

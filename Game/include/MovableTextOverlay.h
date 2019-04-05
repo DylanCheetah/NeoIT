@@ -1,5 +1,6 @@
 #pragma once
 
+#include "GameConfig.h"
 #include "Ogre.h"
 #include "OgreFont.h"
 #include "OgreFontManager.h"
@@ -10,7 +11,7 @@ class MovableTextOverlayAttributes
 {
 public:
     MovableTextOverlayAttributes(const Ogre::String & name, const Ogre::Camera *cam,
-                         const Ogre::String & fontName = "Tahoma", const int &charHeight = 16, const Ogre::ColourValue & color = Ogre::ColourValue::White, const Ogre::String & materialName = "");
+                         const Ogre::String & fontName = DEFAULT_FONT, const int &charHeight = 16, const Ogre::ColourValue & color = Ogre::ColourValue::White, const Ogre::String & materialName = "");
     ~MovableTextOverlayAttributes();
 
     void setFontName(const Ogre::String & fontName);
@@ -83,7 +84,7 @@ protected:
     Ogre::Overlay* mpOv;
     Ogre::OverlayContainer* mpOvContainer;
     Ogre::OverlayElement* mpOvText;
-    
+
     // true if mpOvContainer is visible, false otherwise
     bool mEnabled;
 
