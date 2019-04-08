@@ -12,6 +12,9 @@ xcopy ..\static\client\default\*.dat ..\bin\Debug\client\ /Y
 xcopy ..\data ..\bin\Debug\client\data\ /S /E /Y
 
 echo Creating directories...
-mkdir ..\bin\Debug\client\screenshots
+
+if not exist ..\bin\Debug\client\screenshots (
+    mkdir ..\bin\Debug\client\screenshots
+)
 
 echo Done.
