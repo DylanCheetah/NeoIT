@@ -13,6 +13,9 @@ xcopy ..\data ..\bin\Release\client\data\ /S /E /Y
 del ..\bin\Release\client\localIP.txt
 
 echo Creating directories...
-mkdir ..\bin\Release\client\screenshots
+
+if not exist ..\bin\Release\client\screenshots (
+    mkdir ..\bin\Release\client\screenshots
+)
 
 echo Done.
