@@ -1,3 +1,7 @@
+***IMPORTANT NOTICE***
+I will be switching the build system for this project over to MinGW makefiles soon. After I do, you will no longer be able to build this project with CodeBlocks.
+***END OF NOTICE***
+
 Setup:
 1. download and install CodeBlocks 17.12 or newer
 2. download and install MinGW-w64
