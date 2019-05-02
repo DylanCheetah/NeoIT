@@ -1,4 +1,5 @@
+bin/**
 *.o
-bin/Debug/*.*
-bin/Release/*.*
-deps/win32/Ogre/bin/OgreMain.dll
+*.d
+*.ipch
+*.bin
