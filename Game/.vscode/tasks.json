@@ -1,0 +1,58 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Debug-Win32",
+            "type": "shell",
+            "command": "mingw32-make PLATFORM=Win32 MODE=Debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Release-Win32",
+            "type": "shell",
+            "command": "mingw32-make PLATFORM=Win32 MODE=Release",
+            "group": "build"
+        },
+        {
+            "label": "Debug-Linux",
+            "type": "shell",
+            "command": "make PLATFORM=Linux MODE=Debug",
+            "group": "build"
+        },
+        {
+            "label": "Release-Linux",
+            "type": "shell",
+            "command": "make PLATFORM=Linux MODE=Release",
+            "group": "build"
+        },
+        {
+            "label": "Clean-Win32",
+            "type": "shell",
+            "command": "mingw32-make clean PLATFORM=Win32",
+            "group": "build"
+        },
+        {
+            "label": "Clean-Linux",
+            "type": "shell",
+            "command": "make clean PLATFORM=Linux",
+            "group": "build"
+        },
+        {
+            "label": "Run-Win32",
+            "type": "shell",
+            "command": "gdb ../bin/Debug-Win32/client/World-of-Floofs.exe",
+            "group": "test"
+        },
+        {
+            "label": "Run-Linux",
+            "type": "shell",
+            "command": "gdb ../bin/Debug-Linux/client/World-of-Floofs",
+            "group": "test"
+        }
+    ]
+}

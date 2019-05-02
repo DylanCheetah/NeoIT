@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/MinGW-w64/mingw32/i686-w64-mingw32/include",
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/res",
+                "${workspaceFolder}/../config",
+                "${workspaceFolder}/../deps/Win32/Ogre/include",
+                "${workspaceFolder}/../deps/Win32/Ogre/include/OIS",
+                "${workspaceFolder}/../deps/Win32/OgrePagedGeometry/include",
+                "${workspaceFolder}/../deps/Win32/RakNet/include",
+                "${workspaceFolder}/../deps/Win32/fmod/include",
+                "${workspaceFolder}/../deps/Win32/zzip/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/MinGW-w64/mingw32/bin/gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
