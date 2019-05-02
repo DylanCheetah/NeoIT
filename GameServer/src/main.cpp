@@ -1,6 +1,6 @@
 #include <thread>
 
-#include "GameServer.h"
+#include "main.h"
 #include "MagixNetworkDefines.h"
 //#include "RakNetworkFactory.h"
 #include "RakPeerInterface.h"
