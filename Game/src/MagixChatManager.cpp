@@ -53,9 +53,22 @@ void MagixChatManager::push(const String &caption, const String &sayer,
         break;
     }
 
-    //const unsigned short tChannel = 0; //make all chat text go to the same place
-    chatString[tChannel].push_back(caption);
-    chatSayer[tChannel].push_back(sayer);
+    //Enforce max line width
+    String text = caption;
+    String sender = sayer;
+
+    while((int)text.size() > 35)
+    {
+        chatString[tChannel].push_back(text.substr(0, 35));
+        chatSayer[tChannel].push_back(sender);
+        chatType[tChannel].push_back(type);
+
+        text.erase(0, 35);
+        sender = "";
+    }
+
+    chatString[tChannel].push_back(text);
+    chatSayer[tChannel].push_back(sender);
     chatType[tChannel].push_back(type);
 
     if(int(chatString[tChannel].size()) > MAX_LINES)
@@ -88,14 +101,14 @@ const String MagixChatManager::getChatBlock(const unsigned short &lines,
     }
 
     //Process entire chatblock within estimated range
-    for(int i = start; i<int(chatString[channel].size()); i++)
+    for(int i = start; i < int(chatString[channel].size()); i++)
     {
         const String tLineBlock = prefixChatLine(processChatString(
             chatString[channel][i], chatSayer[channel][i], chatType[channel][i],
             boxWidth, charHeight), chatSayer[channel][i], chatType[channel][i]);
         vector<String>::type tCaption = StringUtil::split(tLineBlock, "\n");
 
-        for(int j = 0; j<int(tCaption.size()); j++)
+        for(int j = 0; j < int(tCaption.size()); j++)
         {
             tChatBlock.push_back(tCaption[j]);
         }
@@ -109,7 +122,7 @@ const String MagixChatManager::getChatBlock(const unsigned short &lines,
         start = 0;
     }
 
-    for(int i = start; i<int(tChatBlock.size()); i++)
+    for(int i = start; i < int(tChatBlock.size()); i++)
     {
         tFinalChat += (i == start ? "" : "\n");
         tFinalChat += tChatBlock[i];
