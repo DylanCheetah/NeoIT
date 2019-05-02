@@ -62,7 +62,7 @@
 #define AMBIENT_LIGHT_INDOOR 0.5, 0.5, 0.5
 
 // Uncomment the next line and change the key
-#define XORKEY 3 * (i % 2) + 3 * (i % 7) + 4 // Change this key like: 3*(i%2)+3*(i%7)+4
+#define XORKEY 0 // Change this key like: 3*(i%2)+3*(i%7)+4
 #define CUSTOMCRITTERS 1 // allows users custom critters
 #define MAXDIMS 100 // Maximum number of dims
 
