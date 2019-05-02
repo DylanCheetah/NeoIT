@@ -1,6 +1,6 @@
 #include <thread>
 
-#include "LoginServer.h"
+#include "main.h"
 //#include "RakNetworkFactory.h" //obsolete
 #include "RakPeerInterface.h"
 #include "RakPeer.h"
