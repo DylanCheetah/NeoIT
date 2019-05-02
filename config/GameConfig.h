@@ -6,6 +6,7 @@
 
 //App Title
 #define APP_TITLE "Impressive Title"
+#define DEFAULT_FONT "Oxanium/Regular"
 
 /// New Version 5
 // Enable encrypted items.cfg
