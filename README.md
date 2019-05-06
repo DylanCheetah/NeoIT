@@ -17,7 +17,7 @@ Building:
 2. build the servers and game
     a. For just MinGW-w64: Open a command prompt to the LoginServer folder and run "mingw32-make", then repeat for GameServer and Game.
     b. For Visual Studio Code: Click Terminal>Run Task>Debug Win32
-6. the output files will be in "bin\client" and "bin\server" inside the main project dir
+6. the output files will be in "bin\Debug-Win32\client" and "bin\Debug-Win32\server" inside the main project dir
 
 Notes:
 * if you want to make changes, simply edit the source code and build again
@@ -25,4 +25,4 @@ Notes:
    delete the data dir inside the "bin\client" dir and build again
 * you can also add more media files if you prefer
 
-***Important Note***: Make sure you only distribute release builds of the game. Debug builds are larger due to the embedded debug info.
+***Important Note***: Make sure you only distribute release builds of the game. Debug builds are larger due to the embedded debug info. You can run the Release Win32 to create a release build of the game in "bin\Release-Win32\client" and "bin\Release-Win32\server".
