@@ -5122,6 +5122,7 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox,
                     mChatManager->message("/clear");
                     mChatManager->message("/lipsync [message]");
                     mChatManager->message("/savechat [filename]");
+                    mChatManager->message("/setdim [dim]");
 
                     if(mDef->isAdmin)
                     {
@@ -5202,7 +5203,8 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox,
                 //normal send
                 else
                 {
-                    mNetworkManager->sendChat(tCaption, tType, tParam, tLipSync);
+                    mNetworkManager->sendChat(tCaption, tType, tParam, 
+                        tLipSync);
                 }
             }
         }
@@ -5221,6 +5223,7 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox,
 
         return;
     }
+
     //Bio
     if(mInputManager->getInputBox() == mBoxText[GUI_BIOBOX] &&
         mInputManager->getInputMode() == INPUT_CONTROL)
@@ -5289,30 +5292,6 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox,
 
         return;
     }
-    //Create Account Info
-    else if(mInputManager->getInputMode() == INPUT_CONTROL)
-    {
-        for(int i = 0; i < MAX_CREATEACCOUNTINFO; i++)
-        {
-            if(mInputManager->getInputBox() == mCreateAccountTextBox[i])
-            {
-                createAccountInfo[i] = mInputManager->getInputText();
-                return;
-            }
-        }
-    }
-    //Edit Account Info
-    else if(mInputManager->getInputMode() == INPUT_CONTROL)
-    {
-        for(int i = 0; i < MAX_EDITACCOUNTINFO; i++)
-        {
-            if(mInputManager->getInputBox() == mEditAccountTextBox[i])
-            {
-                editAccountInfo[i] = mInputManager->getInputText();
-                return;
-            }
-        }
-    }
     //ChangeDimension
     else if(mInputManager->getInputBox() == OverlayManager::getSingleton().getOverlayElement(
         "GUI/DimensionText2") && mInputManager->getInputMode() == INPUT_CONTROL)
@@ -5335,6 +5314,29 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox,
                 mGameStateManager->setDimension(tDimension);
                 mUnitManager->setMapChange(true, "", true,
                     mUnitManager->getPlayer()->getPosition(), false);
+            }
+        }
+    }
+    //Create/edit Account Info
+    else if(mInputManager->getInputMode() == INPUT_CONTROL)
+    {
+        //Check account creation boxes
+        for(int i = 0; i < MAX_CREATEACCOUNTINFO; i++)
+        {
+            if(mInputManager->getInputBox() == mCreateAccountTextBox[i])
+            {
+                createAccountInfo[i] = mInputManager->getInputText();
+                return;
+            }
+        }
+
+        //Check account edit boxes
+        for(int i = 0; i < MAX_EDITACCOUNTINFO; i++)
+        {
+            if(mInputManager->getInputBox() == mEditAccountTextBox[i])
+            {
+                editAccountInfo[i] = mInputManager->getInputText();
+                return;
             }
         }
     }
