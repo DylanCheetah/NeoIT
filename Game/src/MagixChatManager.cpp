@@ -10,6 +10,17 @@ MagixChatManager::prefixChatLine adds the player name/title to the messages sent
 
 //Chat Manager Functions
 //================================================================================
+MagixChatManager::MagixChatManager()
+{
+    reset();
+    channel = 0;
+    pmTarget = "";
+    pmEnter = false;
+    doLocalUsername = false;
+    doGeneralCharname = false;
+}
+
+
 void MagixChatManager::reset(bool clearHistory)
 {
     if(clearHistory)
@@ -56,29 +67,38 @@ void MagixChatManager::push(const String &caption, const String &sayer,
     //Enforce max line width
     String text = caption;
     String sender = sayer;
+    int prefixLen = (int)sender.size() + 3;
 
-    while((int)text.size() > 35)
+    while((int)text.size() > 35 - prefixLen)
     {
-        chatString[tChannel].push_back(text.substr(0, 35));
+        //Push next part of message
+        chatString[tChannel].push_back(text.substr(0, 
+            35 - prefixLen));
         chatSayer[tChannel].push_back(sender);
         chatType[tChannel].push_back(type);
 
-        text.erase(0, 35);
-        sender = "";
+        //Remove message frag from buffer
+        text.erase(0, 35 - prefixLen);
+
+        if(prefixLen)
+        {
+            sender = "";
+            prefixLen = 0;
+        }
     }
 
     chatString[tChannel].push_back(text);
     chatSayer[tChannel].push_back(sender);
     chatType[tChannel].push_back(type);
 
-    if(int(chatString[tChannel].size()) > MAX_LINES)
+    if((int)chatString[tChannel].size() > MAX_LINES)
     {
         chatString[tChannel].erase(chatString[tChannel].begin(),
-            ++chatString[tChannel].begin());
+            chatString[tChannel].begin() + 1);
         chatSayer[tChannel].erase(chatSayer[tChannel].begin(),
-            ++chatSayer[tChannel].begin());
+            chatSayer[tChannel].begin() + 1);
         chatType[tChannel].erase(chatType[tChannel].begin(),
-            ++chatType[tChannel].begin());
+            chatType[tChannel].begin() + 1);
     }
 
     hasNewLine[tChannel] = true;
@@ -104,8 +124,9 @@ const String MagixChatManager::getChatBlock(const unsigned short &lines,
     for(int i = start; i < int(chatString[channel].size()); i++)
     {
         const String tLineBlock = prefixChatLine(processChatString(
-            chatString[channel][i], chatSayer[channel][i], chatType[channel][i],
-            boxWidth, charHeight), chatSayer[channel][i], chatType[channel][i]);
+            chatString[channel][i], chatSayer[channel][i], 
+            chatType[channel][i], boxWidth, charHeight), 
+            chatSayer[channel][i], chatType[channel][i]);
         vector<String>::type tCaption = StringUtil::split(tLineBlock, "\n");
 
         for(int j = 0; j < int(tCaption.size()); j++)
@@ -417,6 +438,14 @@ void MagixChatManager::processInput(String &caption, unsigned char &type,
         param = COMMAND_SPAWNITEM;
         return;
     }
+    //setdim
+    else if(StringUtil::startsWith(caption, COMMAND_SETDIM))
+    {
+        caption.erase(0, 8);
+        type = CHAT_COMMAND;
+        param = COMMAND_SETDIM;
+        return;
+    }
     //Private message
     else if(StringUtil::startsWith(caption, "/"))
     {
@@ -579,19 +608,23 @@ const String MagixChatManager::prefixChatLine(const String &caption,
 }
 
 
-const unsigned short MagixChatManager::getPrefixLength(const String &sayer, const unsigned char &type)
+const unsigned short MagixChatManager::getPrefixLength(const String &sayer, 
+    const unsigned char &type)
 {
     return (int)prefixChatLine("", sayer, type, false).length();
 }
 
 
-const unsigned short MagixChatManager::getPostfixLength(const String &sayer, const unsigned char &type)
+const unsigned short MagixChatManager::getPostfixLength(const String &sayer, 
+    const unsigned char &type)
 {
     return (int)prefixChatLine("", sayer, type, true).length();
 }
 
 
-const String MagixChatManager::processChatString(const String &caption, const String &sayer, const unsigned char &type, const Real &boxWidth, const Real &charHeight)
+const String MagixChatManager::processChatString(const String &caption, 
+    const String &sayer, const unsigned char &type, const Real &boxWidth, 
+    const Real &charHeight)
 {
     String tCaption = prefixChatLine(caption, sayer, type);
     //String tPrefix = prefixChatLine("",sayer,type);
@@ -601,7 +634,8 @@ const String MagixChatManager::processChatString(const String &caption, const St
     if(tCaption.length() > 0)
     {
         //size caption
-        const Font *pFont = dynamic_cast<Ogre::Font*>(Ogre::FontManager::getSingleton().getByName(DEFAULT_FONT).getPointer());
+        const Font *pFont = dynamic_cast<Ogre::Font*>(
+            Ogre::FontManager::getSingleton().getByName(DEFAULT_FONT).getPointer());
         const Real tHeight = charHeight;
 
         int tSpacePos = -1;
@@ -621,13 +655,13 @@ const String MagixChatManager::processChatString(const String &caption, const St
                 tWidthFromSpace += pFont->getGlyphAspectRatio(tCaption[i]);
             }
 
-            if(tCaption[i] == ' ' && i>tPrefix)
+            if(tCaption[i] == ' ' && i > tPrefix)
             {
                 tSpacePos = i;
                 tWidthFromSpace = pFont->getGlyphAspectRatio(0x0030);
             }
 
-            if(tTextWidth*tHeight >= boxWidth)
+            if(tTextWidth * tHeight >= boxWidth)
             {
                 if(tSpacePos != -1)
                 {
@@ -694,7 +728,8 @@ const vector<unsigned char>::type MagixChatManager::getOtherChannels()
 }
 
 
-void MagixChatManager::saveChatLog(const String &directory, const String &filename)
+void MagixChatManager::saveChatLog(const String &directory, 
+    const String &filename)
 {
     std::ofstream outFile;
     const String tFilename = directory + filename;

@@ -50,6 +50,8 @@
 #define COMMAND_SAVECHAT "/savechat"
 // KITO
 #define COMMAND_SPAWNITEM "/spawnitem "
+// DylanCheetah
+#define COMMAND_SETDIM "/setdim "
 
 #include "GameConfig.h"
 #include "MagixUnitManager.h"
@@ -69,40 +71,27 @@ public:
     bool doGeneralCharname;
     bool pmEnter;
 
-
-    MagixChatManager()
-    {
-        reset();
-        channel = 0;
-        pmTarget = "";
-        pmEnter = false;
-        doLocalUsername = false;
-        doGeneralCharname = false;
-    }
-
-
-    ~MagixChatManager()
-    {
-    }
-
-
+    MagixChatManager();
     void reset(bool clearHistory = false);
     void push(const String &caption, const String &sayer = "",
         const unsigned char &type = CHAT_GENERAL);
-    const String getChatBlock(const unsigned short &lines, const Real &boxWidth,
-        const Real &charHeight, const Real &lastOffset);
+    const String getChatBlock(const unsigned short &lines, 
+        const Real &boxWidth, const Real &charHeight, const Real &lastOffset);
     void processInput(String &caption, unsigned char &type, String &param);
-    void say(MagixUnitManager *unitMgr, MagixUnit *target, const String &caption,
-        unsigned char &type);
+    void say(MagixUnitManager *unitMgr, MagixUnit *target, 
+        const String &caption, unsigned char &type);
     void message(const String &caption, const unsigned char &type = 0);
     bool popHasNewLine(const unsigned char &chan);
     bool getHasNewLine(const unsigned char &chan);
     const String prefixChatLine(const String &caption, const String &sayer,
         const unsigned char &type, bool isPostfixLength = false);
-    const unsigned short getPrefixLength(const String &sayer, const unsigned char &type);
-    const unsigned short getPostfixLength(const String &sayer, const unsigned char &type);
+    const unsigned short getPrefixLength(const String &sayer, 
+        const unsigned char &type);
+    const unsigned short getPostfixLength(const String &sayer, 
+        const unsigned char &type);
     const String processChatString(const String &caption, const String &sayer,
-        const unsigned char &type, const Real &boxWidth, const Real &charHeight);
+        const unsigned char &type, const Real &boxWidth, 
+        const Real &charHeight);
     void toggleChannel();
     void setChannel(const unsigned char &value);
     const unsigned char getChannel();
